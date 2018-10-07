@@ -25,15 +25,21 @@ class Block extends Component {
 class Home extends Component {
 	render() {
 		return (
-			<div class="row">
-				<div class="col-md-4 mb-3">
-					<Block />
-				</div>
-				<div class="col-md-4 mb-3">
-					<Block />
-				</div>
-				<div class="col-md-4 mb-3">
-					<Block />
+			<div>
+				<Button color="dark" className="mb-5" block>
+					CREATE POST
+				</Button>
+				<div class="row">
+					<div class="col-md-4 mb-3">
+						<addNewButton />
+						<Block />
+					</div>
+					<div class="col-md-4 mb-3">
+						<Block />
+					</div>
+					<div class="col-md-4 mb-3">
+						<Block />
+					</div>
 				</div>
 			</div>
 		);
