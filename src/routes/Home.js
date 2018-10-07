@@ -23,9 +23,37 @@ class Block extends Component {
 }
 
 class Home extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			title: '',
+			description: ''
+		};
+	}
+
+	handleChange = e => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 	render() {
 		return (
 			<div>
+				<input
+					value={this.state.title}
+					onChange={this.handleChange}
+					name="title"
+					class="form-control mb-2"
+					placeholder="Title"
+					required
+				/>
+				<textarea
+					row="9"
+					value={this.state.description}
+					onChange={this.handleChange}
+					name="description"
+					class="form-control mb-2"
+					placeholder="Description"
+					required
+				/>
 				<Button color="dark" className="mb-5" block>
 					CREATE POST
 				</Button>
