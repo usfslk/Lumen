@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 import { Container } from 'reactstrap';
 import fire from '../Fire';
 
