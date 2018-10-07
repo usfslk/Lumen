@@ -43,10 +43,10 @@ class Home extends Component {
 		const { currentUser } = fire.auth();
 		fire
 			.database()
-			.ref(`master/${currentUser.uid}/feed/articles/`)
-			.push({ title, description })
+			.ref(`master/${currentUser.uid}/`)
+			.push({ title, description, currentUser })
 			.then(() => {
-				this.setState({ loading: false, show: false });
+				this.setState({ loading: false });
 			});
 	};
 	render() {
