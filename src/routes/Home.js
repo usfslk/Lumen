@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import fire from '../Fire';
 
 class Block extends Component {
 	render() {
 		return (
 			<Card>
-				<CardImg
-					top
-					width="100%"
-					src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-					alt="Card image cap"
-				/>
+				<CardImg top width="100%" src="http://placekitten.com/g/200/70" alt="Card image cap" />
 				<CardBody>
 					<CardText>
 						Some quick example text to build on the card title and make up the bulk of the card's content.
@@ -27,7 +23,10 @@ class Home extends Component {
 		super(props);
 		this.state = {
 			title: '',
-			description: ''
+			description: '',
+			picture: '',
+			list: [],
+			keys: []
 		};
 	}
 
@@ -40,15 +39,39 @@ class Home extends Component {
 		e.preventDefault();
 		let title = this.state.title;
 		let description = this.state.description;
+		let picture = this.state.picture;
 		const { currentUser } = fire.auth();
 		fire
 			.database()
-			.ref(`master/${currentUser.uid}/`)
-			.push({ title, description, currentUser })
+			.ref(`feed/${currentUser.uid}/`)
+			.push({ title, description, picture, user: currentUser.email })
 			.then(() => {
 				this.setState({ loading: false });
 			});
 	};
+
+	componentDidMount = () => {
+		this.setState({ loading: true });
+		const { currentUser } = fire.auth();
+		fire
+			.database()
+			.ref(`/feed/${currentUser.uid}/`)
+			.on('value', snapshot => {
+				var obj = snapshot.val();
+				var list = [];
+				var keys = [];
+				for (let a in obj) {
+					list.push(obj[a]);
+					keys.push(a);
+				}
+				this.setState({
+					list: list,
+					keys: keys,
+					loading: false
+				});
+			});
+	};
+
 	render() {
 		return (
 			<div>
@@ -60,6 +83,14 @@ class Home extends Component {
 					placeholder="Title"
 					required
 				/>
+				<input
+					value={this.state.picture}
+					onChange={this.handleChange}
+					name="picture"
+					class="form-control mb-2"
+					placeholder="Picture URL"
+					required
+				/>
 				<textarea
 					row="9"
 					value={this.state.description}
@@ -69,7 +100,7 @@ class Home extends Component {
 					placeholder="Description"
 					required
 				/>
-				<Button color="dark" className="mb-5" block>
+				<Button color="dark" onClick={this.new} className="mb-5" block>
 					CREATE POST
 				</Button>
 				<div class="row">
