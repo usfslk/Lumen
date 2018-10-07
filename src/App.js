@@ -3,6 +3,17 @@ import './App.css';
 import { Container } from 'reactstrap';
 
 class Form extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: '',
+			password: '',
+			loading: false
+		};
+	}
+	handleChange = e => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 	render() {
 		return (
 			<div class="form">
@@ -21,9 +32,9 @@ class Form extends Component {
 						name="password"
 						autoComplete="current-password"
 					/>
-					<button>login</button>
+					<button onClick={this.login}>login</button>
 					<div class="m-3" />
-					<button>signup</button>
+					<button onClick={this.signup}>signup</button>
 					<p class="message">
 						Your password must not contain spaces, special characters, or emojis. By continuing you agree to our{' '}
 						<a href="#">terms of services</a>
@@ -35,9 +46,6 @@ class Form extends Component {
 }
 
 class App extends Component {
-	handleChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
-	}
 	render() {
 		return (
 			<Container>
