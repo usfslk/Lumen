@@ -34,6 +34,21 @@ class Home extends Component {
 	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
+
+	new = e => {
+		this.setState({ loading: true });
+		e.preventDefault();
+		let title = this.state.title;
+		let description = this.state.description;
+		const { currentUser } = fire.auth();
+		fire
+			.database()
+			.ref(`master/${currentUser.uid}/feed/articles/`)
+			.push({ title, description })
+			.then(() => {
+				this.setState({ loading: false, show: false });
+			});
+	};
 	render() {
 		return (
 			<div>
