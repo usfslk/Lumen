@@ -11,12 +11,17 @@ class Home extends Component {
 			description: '',
 			picture: '',
 			list: [],
-			keys: []
+			keys: [],
+			show: false
 		};
 	}
 
 	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
+	};
+
+	show = () => {
+		this.setState({ show: !this.state.show });
 	};
 
 	new = e => {
@@ -31,7 +36,7 @@ class Home extends Component {
 			.ref(`feed/${currentUser.uid}/`)
 			.push({ title, description, picture, user: currentUser.email })
 			.then(() => {
-				this.setState({ loading: false });
+				this.setState({ loading: false, show: false });
 			});
 	};
 
@@ -73,34 +78,45 @@ class Home extends Component {
 
 		return (
 			<div>
-				<input
-					value={this.state.title}
-					onChange={this.handleChange}
-					name="title"
-					class="form-control mb-2"
-					placeholder="Title"
-					required
-				/>
-				<input
-					value={this.state.picture}
-					onChange={this.handleChange}
-					name="picture"
-					class="form-control mb-2"
-					placeholder="Picture URL"
-					required
-				/>
-				<textarea
-					row="9"
-					value={this.state.description}
-					onChange={this.handleChange}
-					name="description"
-					class="form-control mb-2"
-					placeholder="Description"
-					required
-				/>
-				<Button color="dark" onClick={this.new} className="mb-5" block>
-					CREATE POST
-				</Button>
+				{this.state.show ? (
+					<div>
+						<input
+							value={this.state.title}
+							onChange={this.handleChange}
+							name="title"
+							class="form-control mb-2"
+							placeholder="Title"
+							required
+						/>
+						<input
+							value={this.state.picture}
+							onChange={this.handleChange}
+							name="picture"
+							class="form-control mb-2"
+							placeholder="Picture URL"
+							required
+						/>
+						<textarea
+							row="9"
+							value={this.state.description}
+							onChange={this.handleChange}
+							name="description"
+							class="form-control mb-2"
+							placeholder="Description"
+							required
+						/>
+					</div>
+				) : null}
+				{!this.state.show ? (
+					<Button color="dark" onClick={this.show} className="mb-5" block>
+						CREATE POST
+					</Button>
+				) : null}
+				{this.state.show ? (
+					<Button color="dark" onClick={this.new} className="mb-5" block>
+						SUBMIT
+					</Button>
+				) : null}
 				{this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
 				<div class="row">
 					<addNewButton />
