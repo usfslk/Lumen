@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+	Card,
+	CardImg,
+	CardText,
+	CardBody,
+	CardTitle,
+	CardSubtitle,
+	CardFooter,
+	CardColumns,
+	Button
+} from 'reactstrap';
 import fire from '../Fire';
 
 class Home extends Component {
@@ -64,16 +74,20 @@ class Home extends Component {
 
 	render() {
 		const listItems = this.state.list.map((item, index) => (
-			<div class="col-md-4 mb-3">
-				<Card>
-					<CardImg top width="100%" id="mainImage" src={item.picture} alt="Card image cap" />
-					<CardBody>
-						<CardTitle>{item.title}</CardTitle>
-						<CardText>{item.description}</CardText>
-						<small>Posted by {item.user}</small>
-					</CardBody>
-				</Card>
-			</div>
+			<Card style={{ borderWidth: 0, borderRadius: 8 }}>
+				<CardImg
+					top
+					width="100%"
+					id="mainImage"
+					src={item.picture}
+					style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
+				/>
+				<CardBody>
+					<CardTitle>{item.title}</CardTitle>
+					<CardText>{item.description}</CardText>
+				</CardBody>
+				<CardFooter>Posted by {item.user}</CardFooter>
+			</Card>
 		));
 
 		return (
@@ -120,7 +134,7 @@ class Home extends Component {
 				{this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
 				<div class="row">
 					<addNewButton />
-					{listItems}
+					<CardColumns>{listItems}</CardColumns>
 				</div>
 			</div>
 		);
