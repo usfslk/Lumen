@@ -26,10 +26,10 @@ class App extends Component {
 
 	render() {
 		return (
-			<Container>
+			<div className="pl-5 pr-5">
 				<h1 className="text-center text-light pt-5 pb-5">Lumen</h1>
 				{!this.state.loggedIn ? <Login /> : <Home />}
-			</Container>
+			</div>
 		);
 	}
 }

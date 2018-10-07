@@ -92,14 +92,12 @@
 	color: #ef3b3a;
 }
 body {
-	background: #76b852; /* fallback for old browsers */
-	background: -webkit-linear-gradient(right, #76b852, #8dc26f);
-	background: -moz-linear-gradient(right, #76b852, #8dc26f);
-	background: -o-linear-gradient(right, #76b852, #8dc26f);
-	background: linear-gradient(to left, #76b852, #8dc26f);
+	background: #53d769; /* fallback for old browsers */
+	background: -webkit-linear-gradient(right, #53d769, #fecb2e);
+	background: -moz-linear-gradient(right, #53d769, #fecb2e);
+	background: -o-linear-gradient(right, #53d769, #fecb2e);
+	background: linear-gradient(to left, #53d769, #fecb2e);
 	font-family: 'Roboto', sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 #mainImage {

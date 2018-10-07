@@ -8,7 +8,9 @@ import {
 	CardSubtitle,
 	CardFooter,
 	CardColumns,
-	Button
+	Button,
+	Jumbotron,
+	Container
 } from 'reactstrap';
 import fire from '../Fire';
 
@@ -122,7 +124,7 @@ class Home extends Component {
 					</div>
 				) : null}
 				{!this.state.show ? (
-					<Button color="dark" onClick={this.show} className="mb-5" block>
+					<Button color="dark" onClick={this.show} className="mb-5" size="lg" block>
 						CREATE POST
 					</Button>
 				) : null}
@@ -132,10 +134,8 @@ class Home extends Component {
 					</Button>
 				) : null}
 				{this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
-				<div class="row">
-					<addNewButton />
-					<CardColumns>{listItems}</CardColumns>
-				</div>
+				<addNewButton />
+				<CardColumns className="mb-5">{listItems}</CardColumns>
 			</div>
 		);
 	}
