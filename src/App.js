@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./App.css";
-import { Container } from "reactstrap";
+import React, { Component } from 'react';
+import './App.css';
+import { Container } from 'reactstrap';
 
 class Form extends Component {
 	render() {
@@ -25,8 +25,7 @@ class Form extends Component {
 					<div class="m-3" />
 					<button>signup</button>
 					<p class="message">
-						Your password must not contain spaces, special characters, or
-						emojis. By continuing you agree to our{" "}
+						Your password must not contain spaces, special characters, or emojis. By continuing you agree to our{' '}
 						<a href="#">terms of services</a>
 					</p>
 				</form>
@@ -36,6 +35,9 @@ class Form extends Component {
 }
 
 class App extends Component {
+	handleChange(e) {
+		this.setState({ [e.target.name]: e.target.value });
+	}
 	render() {
 		return (
 			<Container>
