@@ -9,7 +9,7 @@ class Form extends Component {
 		this.state = {
 			email: '',
 			password: '',
-			loading: false
+			loading: true
 		};
 	}
 	handleChange = e => {
@@ -46,17 +46,28 @@ class Form extends Component {
 	render() {
 		return (
 			<div class="form">
-				<form class="login-form">
-					<input type="text" onChange={this.handleChange} placeholder="Email" name="email" autoComplete="username" />
-					<input type="password" onChange={this.handleChange} placeholder="Password" name="password" autoComplete="current-password" />
-					<button onClick={this.login}>login</button>
-					<div class="m-3" />
-					<button onClick={this.signup}>signup</button>
-					<p class="message">
-						Your password must not contain spaces, special characters, or emojis. By continuing you agree to our{' '}
-						<a href="#">terms of services</a>
-					</p>
-				</form>
+				<input
+					type="text"
+					onChange={this.handleChange}
+					placeholder="Email"
+					name="email"
+					autoComplete="username"
+				/>
+				<input
+					type="password"
+					onChange={this.handleChange}
+					placeholder="Password"
+					name="password"
+					autoComplete="current-password"
+				/>
+				{this.state.loading ? <p>Loading ...</p> : null}
+				<button onClick={this.login}>login</button>
+				<div class="m-3" />
+				<button onClick={this.signup}>signup</button>
+				<p class="message">
+					Your password must not contain spaces, special characters, or emojis. By continuing you agree
+					to our <a href="#">terms of services</a>
+				</p>
 			</div>
 		);
 	}
