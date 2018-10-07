@@ -2,26 +2,11 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import fire from '../Fire';
 
-class Block extends Component {
-	render() {
-		return (
-			<Card>
-				<CardImg top width="100%" src="http://placekitten.com/g/200/70" alt="Card image cap" />
-				<CardBody>
-					<CardText>
-						Some quick example text to build on the card title and make up the bulk of the card's content.
-					</CardText>
-					<CardSubtitle>Posted by user@mail.com</CardSubtitle>
-				</CardBody>
-			</Card>
-		);
-	}
-}
-
 class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			loading: true,
 			title: '',
 			description: '',
 			picture: '',
@@ -73,6 +58,19 @@ class Home extends Component {
 	};
 
 	render() {
+		const listItems = this.state.list.map((item, index) => (
+			<div class="col-md-4 mb-3">
+				<Card>
+					<CardImg top width="100%" id="mainImage" src={item.picture} alt="Card image cap" />
+					<CardBody>
+						<CardTitle>{item.title}</CardTitle>
+						<CardText>{item.description}</CardText>
+						<small>Posted by {item.user}</small>
+					</CardBody>
+				</Card>
+			</div>
+		));
+
 		return (
 			<div>
 				<input
@@ -103,17 +101,10 @@ class Home extends Component {
 				<Button color="dark" onClick={this.new} className="mb-5" block>
 					CREATE POST
 				</Button>
+				{this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
 				<div class="row">
-					<div class="col-md-4 mb-3">
-						<addNewButton />
-						<Block />
-					</div>
-					<div class="col-md-4 mb-3">
-						<Block />
-					</div>
-					<div class="col-md-4 mb-3">
-						<Block />
-					</div>
+					<addNewButton />
+					{listItems}
 				</div>
 			</div>
 		);
