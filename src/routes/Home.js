@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-import {
-	Card,
-	CardImg,
-	CardText,
-	CardBody,
-	CardTitle,
-	CardSubtitle,
-	CardFooter,
-	CardColumns,
-	Button,
-	Jumbotron,
-	Container
-} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, CardFooter, CardColumns, Button, Jumbotron, Container, Row, Col } from 'reactstrap';
 import fire from '../Fire';
 
 class Home extends Component {
@@ -32,6 +20,10 @@ class Home extends Component {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
+	logout = () => {
+		fire.auth().signOut();
+	};
+
 	show = () => {
 		this.setState({ show: !this.state.show });
 	};
@@ -45,7 +37,7 @@ class Home extends Component {
 		const { currentUser } = fire.auth();
 		fire
 			.database()
-			.ref(`feed/${currentUser.uid}/`)
+			.ref(`feed/`)
 			.push({ title, description, picture, user: currentUser.email })
 			.then(() => {
 				this.setState({ loading: false, show: false });
@@ -57,7 +49,7 @@ class Home extends Component {
 		const { currentUser } = fire.auth();
 		fire
 			.database()
-			.ref(`/feed/${currentUser.uid}/`)
+			.ref(`/feed/`)
 			.on('value', snapshot => {
 				var obj = snapshot.val();
 				var list = [];
@@ -77,13 +69,7 @@ class Home extends Component {
 	render() {
 		const listItems = this.state.list.map((item, index) => (
 			<Card style={{ borderWidth: 0, borderRadius: 8, marginBottom: 25 }}>
-				<CardImg
-					top
-					width="100%"
-					id="mainImage"
-					src={item.picture}
-					style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
-				/>
+				<CardImg top width="100%" id="mainImage" src={item.picture} style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }} />
 				<CardBody>
 					<CardTitle>{item.title}</CardTitle>
 					<CardText>{item.description}</CardText>
@@ -95,46 +81,37 @@ class Home extends Component {
 		return (
 			<div>
 				{this.state.show ? (
-					<div>
-						<input
-							value={this.state.title}
-							onChange={this.handleChange}
-							name="title"
-							class="form-control mb-2"
-							placeholder="Title"
-							required
-						/>
-						<input
-							value={this.state.picture}
-							onChange={this.handleChange}
-							name="picture"
-							class="form-control mb-2"
-							placeholder="Picture URL"
-							required
-						/>
-						<textarea
-							row="9"
-							value={this.state.description}
-							onChange={this.handleChange}
-							name="description"
-							class="form-control mb-2"
-							placeholder="Description"
-							required
-						/>
+					<div className="mb-3">
+						<input value={this.state.title} onChange={this.handleChange} name="title" class="form-control mb-2" placeholder="Title" required />
+						<input value={this.state.picture} onChange={this.handleChange} name="picture" class="form-control mb-2" placeholder="Picture URL" required />
+						<textarea row="9" value={this.state.description} onChange={this.handleChange} name="description" class="form-control mb-2" placeholder="Description" required />
 					</div>
 				) : null}
-				{!this.state.show ? (
-					<Button color="dark" onClick={this.show} className="mb-5" size="lg" block>
-						CREATE POST
-					</Button>
-				) : null}
-				{this.state.show ? (
-					<Button color="dark" onClick={this.new} className="mb-5" block>
-						SUBMIT
-					</Button>
-				) : null}
+				<Row>
+					<Col xs="6" />
+					<Col xs="6" />
+				</Row>
+				<Row>
+					<Col xs="6">
+						{!this.state.show ? (
+							<Button color="dark" onClick={this.show} className="mb-5" block>
+								CREATE POST
+							</Button>
+						) : null}
+						{this.state.show ? (
+							<Button color="dark" onClick={this.new} className="mb-5" block>
+								SUBMIT
+							</Button>
+						) : null}
+					</Col>
+					<Col xs="6">
+						<Button color="light" onClick={this.logout} className="mb-5" block>
+							LOGOUT
+						</Button>
+					</Col>
+				</Row>
+
 				{this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
-				<addNewButton />
 				<CardColumns className="mb-5">{listItems}</CardColumns>
 			</div>
 		);
