@@ -76,7 +76,7 @@ class Home extends Component {
 
 	render() {
 		const listItems = this.state.list.map((item, index) => (
-			<Card style={{ borderWidth: 0, borderRadius: 8 }}>
+			<Card style={{ borderWidth: 0, borderRadius: 8, marginBottom: 25 }}>
 				<CardImg
 					top
 					width="100%"
