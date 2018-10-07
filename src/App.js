@@ -15,7 +15,7 @@ class Form extends Component {
 	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
-	login(e) {
+	login = e => {
 		this.setState({ loading: true });
 		e.preventDefault();
 		fire
@@ -27,9 +27,9 @@ class Form extends Component {
 			.catch(error => {
 				console.log(error);
 			});
-	}
+	};
 
-	signup(e) {
+	signup = e => {
 		this.setState({ loading: true });
 		e.preventDefault();
 		fire
@@ -42,7 +42,7 @@ class Form extends Component {
 			.catch(error => {
 				console.log(error);
 			});
-	}
+	};
 	render() {
 		return (
 			<div class="form">
@@ -65,8 +65,8 @@ class Form extends Component {
 				<div class="m-3" />
 				<button onClick={this.signup}>signup</button>
 				<p class="message">
-					Your password must not contain spaces, special characters, or emojis. By continuing you agree
-					to our <a href="#">terms of services</a>
+					Your password must not contain spaces, special characters, or emojis. By continuing you agree to our{' '}
+					<a href="#">terms of services</a>
 				</p>
 			</div>
 		);
