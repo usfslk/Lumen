@@ -3,8 +3,27 @@ import './App.css';
 import { Container } from 'reactstrap';
 import Login from './routes/Login';
 import Home from './routes/Home';
+import fire from './Fire';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			error: null,
+			loggedIn: null
+		};
+	}
+	componentWillMount = () => {
+		this.setState({ loading: true });
+		fire.auth().onAuthStateChanged(user => {
+			if (user) {
+				this.setState({ loggedIn: true, loading: false });
+			} else {
+				this.setState({ loggedIn: false, loading: false });
+			}
+		});
+	};
+
 	render() {
 		return (
 			<Container>
