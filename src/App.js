@@ -13,7 +13,7 @@ class App extends Component {
 			loggedIn: null
 		};
 	}
-	componentWillMount = () => {
+	componentDidMount = () => {
 		this.setState({ loading: true });
 		fire.auth().onAuthStateChanged(user => {
 			if (user) {
@@ -28,8 +28,7 @@ class App extends Component {
 		return (
 			<Container>
 				<h1 className="text-center text-light pt-5 pb-5">Lumen</h1>
-				<Login />
-				<Home />
+				{!this.state.loggedIn ? <Login /> : <Home />}
 			</Container>
 		);
 	}
