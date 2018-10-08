@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Container } from 'reactstrap';
 import Login from './routes/Login';
 import Home from './routes/Home';
 import fire from './Fire';
+import './App.css';
 
 class App extends Component {
 	constructor(props) {
@@ -26,9 +26,18 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="pl-5 pr-5">
-				<h1 className="text-center text-light pt-5 pb-5">Lumen</h1>
-				{!this.state.loggedIn ? <Login /> : <Home />}
+			<div>
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-2" />
+						<div class="col-xs-8">
+							<h1 className="text-light pt-5 pb-5">Lumen</h1>
+							{this.state.loggedIn ? <Home /> : null}
+						</div>
+						<div class="col-xs-2" />
+					</div>
+				</div>
+				{!this.state.loggedIn ? <Login /> : null}
 			</div>
 		);
 	}

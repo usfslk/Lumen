@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, CardFooter, CardColumns, Button, Jumbotron, Container, Row, Col } from 'reactstrap';
+import {
+	Card,
+	CardImg,
+	CardText,
+	CardBody,
+	CardTitle,
+	CardSubtitle,
+	CardFooter,
+	CardColumns,
+	Button,
+	Jumbotron,
+	Container,
+	Row,
+	Col
+} from 'reactstrap';
 import fire from '../Fire';
 
 class Home extends Component {
@@ -15,7 +29,6 @@ class Home extends Component {
 			show: false
 		};
 	}
-
 	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
@@ -69,7 +82,13 @@ class Home extends Component {
 	render() {
 		const listItems = this.state.list.map((item, index) => (
 			<Card style={{ borderWidth: 0, borderRadius: 8, marginBottom: 25 }}>
-				<CardImg top width="100%" id="mainImage" src={item.picture} style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }} />
+				<CardImg
+					top
+					width="100%"
+					id="mainImage"
+					src={item.picture}
+					style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
+				/>
 				<CardBody>
 					<CardTitle>{item.title}</CardTitle>
 					<CardText>{item.description}</CardText>
@@ -82,9 +101,31 @@ class Home extends Component {
 			<div>
 				{this.state.show ? (
 					<div className="mb-3">
-						<input value={this.state.title} onChange={this.handleChange} name="title" class="form-control mb-2" placeholder="Title" required />
-						<input value={this.state.picture} onChange={this.handleChange} name="picture" class="form-control mb-2" placeholder="Picture URL" required />
-						<textarea row="9" value={this.state.description} onChange={this.handleChange} name="description" class="form-control mb-2" placeholder="Description" required />
+						<input
+							value={this.state.title}
+							onChange={this.handleChange}
+							name="title"
+							class="form-control mb-2"
+							placeholder="Title"
+							required
+						/>
+						<input
+							value={this.state.picture}
+							onChange={this.handleChange}
+							name="picture"
+							class="form-control mb-2"
+							placeholder="Picture URL"
+							required
+						/>
+						<textarea
+							row="9"
+							value={this.state.description}
+							onChange={this.handleChange}
+							name="description"
+							class="form-control mb-2"
+							placeholder="Description"
+							required
+						/>
 					</div>
 				) : null}
 				<Row>

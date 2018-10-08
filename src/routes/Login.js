@@ -46,20 +46,13 @@ class Login extends Component {
 		return (
 			<div class="form">
 				<input type="text" onChange={this.handleChange} placeholder="Email" name="email" autoComplete="username" />
-				<input
-					type="password"
-					onChange={this.handleChange}
-					placeholder="Password"
-					name="password"
-					autoComplete="current-password"
-				/>
+				<input type="password" onChange={this.handleChange} placeholder="Password" name="password" autoComplete="current-password" />
 				{this.state.loading ? <p>Loading ...</p> : null}
 				<button onClick={this.login}>login</button>
 				<div class="m-3" />
 				<button onClick={this.signup}>signup</button>
 				<p class="message">
-					Your password must not contain spaces, special characters, or emojis. By continuing you agree to our{' '}
-					<a href="#">terms of services</a>
+					Your password must not contain spaces, special characters, or emojis. By continuing you agree to our <a href="#">terms of services</a>
 				</p>
 			</div>
 		);
