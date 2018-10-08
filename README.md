@@ -11,7 +11,7 @@
  <img src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg" alt="badge">
 </p>
 
-### [Live Demo](https://csb-43mq0xw0ww-iqifbrwskl.now.sh/)
+### [Live Demo](https://lumensocial.herokuapp.com/)
 
 ### Introduction
 
