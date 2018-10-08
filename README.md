@@ -1,10 +1,17 @@
-# Building a social network using React.js and Firebase
 
-![badge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)
+<div align="center">
+<h2>Building a social network using React.js and Firebase</h2>
+</div>
 
-![hero](https://i.imgur.com/JISdJFy.png)
+<p align="center">
+ <img src="https://i.imgur.com/JISdJFy.png" alt="hero">
+</p>
 
-### What you’ll build in this tutorial
+<p align="center">
+ <img src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg" alt="badge">
+</p>
+
+### Introduction
 
 We’re going to be creating a basic list of items that you do CRUD to - create, read (update and delete in the next chapter). The feature itself is nothing special, it’s really just a skeleton that demonstrates how to do the most common operations with React and Firebase. 
 
@@ -43,8 +50,10 @@ Lets's create a basic form so we can handle user authentication:
           By continuing you agree to our <a href="#">terms of services</a>
         </p>
     </div>
-![login-form](https://i.imgur.com/dKASiqw.jpg)
-
+    
+<p align="center">
+ <img src="https://i.imgur.com/dKASiqw.jpg" alt="login">
+</p>
 Before writing any more code, let's setup our Firebase project and config file: 
 
  1. Go to https://console.firebase.google.com/ 
@@ -73,7 +82,9 @@ Copy paste your credentials using the template below and save the file as `Fire.
  1. Go back to Firebase website and navigate to Database
  2. Create a new one and choose "Start in test mode"
 
-![firebase-db](https://i.imgur.com/F5xrrJQ.jpg)
+<p align="center">
+ <img src="https://i.imgur.com/F5xrrJQ.jpg" alt="db">
+</p>
 
 That's it you have a fully working db!
 You can later change those settings when you're ready to deploy.
@@ -138,8 +149,9 @@ Now jump to your class and add our main auth functions:
             console.log(error);
           });
       };
-![firebase-auth](https://i.imgur.com/MIiERVC.jpg)
-
+<p align="center">
+ <img src="https://i.imgur.com/MIiERVC.jpg" alt="db">
+</p>
 Boom! We got our first user. Let's move to the next step.
 
 ### App Scaffold
@@ -149,7 +161,9 @@ Now that everyone can create an account and login to our app, we need a better s
 *Home.js ( social feed )
 Login.js* ( auth page )
 
-![architecture](https://i.imgur.com/zyVrXUu.jpg)
+<p align="center">
+ <img src="https://i.imgur.com/zyVrXUu.jpg" alt="app">
+</p>
 
 Don't forget to fix import paths since we're moving our files inside a folder!
 Let’s make a few updates to `App.js` to let React decide which screen to display based on Auth status:
@@ -307,7 +321,9 @@ The logout function is very straightforward to implement, it's just one line of 
     };
 
 ### Social Cards UI
-![main-app](https://i.imgur.com/MWtxkzh.png)
+![main-app](https://i.imgur.com/VFviw5j.png)
+
+
 Putting our `list` in a separate constant for best practices and good code readability, also `list` can be named whatever, I choose list for the sake of simplicity.
 
     const listItems = this.state.list.map((item, index) => (
