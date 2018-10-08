@@ -326,7 +326,7 @@ The logout function is very straightforward to implement, it's just one line of 
 	    fire.auth().signOut();
     };
 
-### UI
+### User Interface
 ![main-app](https://i.imgur.com/VFviw5j.png)
 
 
