@@ -227,12 +227,6 @@ Like our login page we need a form, some buttons and of course a function to han
     <textarea row="9" value={this.state.description} onChange={this.handleChange} name="description" 
 	    class="form-control mb-2" placeholder="Description" required />
 
-Fot the buttons we'll use this:
-
-    <Button color="dark" onClick={this.new} className="mb-5" block>    
-		SUBMIT    
-    </Button>
-
 The `handleChange` is similar to the last one so  just copy that in your `Home.js` file and initialize values in constructor:
 
      constructor(props) {
