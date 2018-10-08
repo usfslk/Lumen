@@ -51,9 +51,8 @@ Lets's create a basic form so we can handle user authentication:
         </p>
     </div>
     
-<p align="center">
- <img src="https://i.imgur.com/dKASiqw.jpg" alt="login">
-</p>
+ <img src="https://i.imgur.com/kv791qG.jpg" alt="login">
+
 Before writing any more code, let's setup our Firebase project and config file: 
 
  1. Go to https://console.firebase.google.com/ 
@@ -161,9 +160,7 @@ Now that everyone can create an account and login to our app, we need a better s
 *Home.js ( social feed )
 Login.js* ( auth page )
 
-<p align="center">
  <img src="https://i.imgur.com/zyVrXUu.jpg" alt="app">
-</p>
 
 Don't forget to fix import paths since we're moving our files inside a folder!
 Let’s make a few updates to `App.js` to let React decide which screen to display based on Auth status:
