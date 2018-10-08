@@ -1,18 +1,19 @@
-## Lumen
+# Building a social network using React.js and Firebase
+We’re going to be creatinga basic list of items that you do CRUD to - create, read (update and delete in the next chapter). The feature itself is nothing special, it’s really just a skeleton that demonstrates how to do the most common operations with React and Firebase. 
 
-We’re going to be building a basic list of items that you do CRUD to - create, read (update and delete in the next chapter). The feature itself is nothing special, it’s really just a skeleton that demonstrates how to do the most common operations with React and Firebase. 
+*Here are a few important concepts for this lesson.*
 
-Here are a few important concepts for this lesson.
+Firebase is a real-time **NoSQL** cloud database (but also `cloud storage` , `messaging` and `authentication service`) that helps you build apps without building the backend. It abstracts away most of your complex server-side features. You can save and retrieve **JSON** objects, build user authentication, and get data updates in real-time across connected devices.
 
-Firebase is a real-time NoSQL cloud database (but also cloud storage and messaging and authentication service) that helps you build apps without building the backend. It abstracts away most of your complex server-side features. You can save and retrieve JSON objects, build user authentication, and get data updates in real-time across connected devices.
+This tutorial will take you from zero to a realtime React app with just a few lines of code. This tutorial assumes you have Node.js and NPM installed on your local system and a basic understanding of how React works and ES6 syntax. First thing we need to do is create a fresh new app, let's call it lumen. 
 
-This tutorial will take you from zero to a realtime React app with just a few lines of code. This tutorial assumes you have Node.js and NPM installed on your local system. First thing we need to do is create a fresh new app, let's call it lumen:
+##### Kicking things off from the command line:
+
 
     npx create-react-app lumen
     cd lumen
 
 Installing Firebase and Bootstrap
-Let’s kick things off from the command line:
 
     yarn add firebase bootstrap reactstrap
     yarn start
@@ -20,17 +21,22 @@ Let’s kick things off from the command line:
 Lets's create a basic form so we can handle user authentication:
 
     <div class="form">
-        <input type="text" onChange={this.handleChange} placeholder="Email" name="email" autoComplete="username" />
-        <input type="password" onChange={this.handleChange} placeholder="Password" name="password" autoComplete="current-password" />
+        <input type="text" onChange={this.handleChange}
+	         placeholder="Email" name="email" autoComplete="username" />
+        <input type="password" onChange={this.handleChange} 
+	        placeholder="Password" name="password" autoComplete="current-password" />
+	        
         {this.state.loading ? <p>Loading ...</p> : null}
+        
         <button onClick={this.login}>login</button>
-        <div class="m-3" />
         <button onClick={this.signup}>signup</button>
+        
         <p class="message">
-          Your password must not contain spaces, special characters, or emojis. By continuing you agree to our <a href="#">terms of services</a>
+          Your password must not contain spaces, special characters, or emojis. 
+          By continuing you agree to our <a href="#">terms of services</a>
         </p>
     </div>
-![login-form](https://i.imgur.com/uhJWgTm.jpg)
+![login-form](https://i.imgur.com/dKASiqw.jpg)
 
 Before writing any more code, let's setup our Firebase project and config file: 
 
@@ -38,7 +44,7 @@ Before writing any more code, let's setup our Firebase project and config file:
  2. Create new project 
  3. Click on Auth then 'Set up sign-in method'
 
-In this example we'll only need email/password
+In this example we'll only need email/password method
 So go ahead and enable that bad boy
 On the top right you'll see a "Web Setup" button click on that.
 
@@ -65,9 +71,9 @@ Copy paste your credentials using the template below and save the file as `Fire.
 That's it you have a fully working db!
 You can later change those settings when you're ready to deploy.
 
-Now we can more add code to our app, let's focus on the main form, you can see that we have two inputs and two buttons for signin/signup:
+Now we can add more code to our app, let's focus on the login form for a moment, you can see that we have two inputs and two buttons for signin/signup, that's the bare minimum for a function auth flow. You may add forget password if you wish, google provide everything to make that process very easy but we're not covering this today.
 
-Let's initialize a constructor() with empty values:
+Let's initialize a `constructor()` with empty values:
 
       constructor(props) {
         super(props);
@@ -85,7 +91,7 @@ We need a way to handle user input so let's add this function:
       };
 
 >   As you can see I'm using **arrow functions** and that's because manual
-> binding is confusing for begginers but you should defintely [learn more](https://reactjs.org/docs/faq-functions.html)
+> binding is confusing for beginners but you should definitely [learn more](https://reactjs.org/docs/faq-functions.html)
 > about the subject so you can understand what's going on.
 
 ### LogIn And SingUp functions
@@ -127,15 +133,18 @@ Now jump to your class and add our main auth functions:
       };
 ![firebase-auth](https://i.imgur.com/MIiERVC.jpg)
 
+Boom! We got our first user. Let's move to the next step.
+
 ### App structure
 
-Now that everyone can create an account and login to our app, we need a better structure so let's create a folder called `routes` where we're going to put our two screens
+Now that everyone can create an account and login to our app, we need a better structure so let's create a folder called `routes` where we're going to put our two mains screens
 
-*Home.js
-Login.js*
+*Home.js ( social feed )
+Login.js* ( auth page )
 
 ![architecture](https://i.imgur.com/zyVrXUu.jpg)
-Dont forget to fix import paths since we're moving our files inside a folder!
+
+Don't forget to fix import paths since we're moving our files inside a folder!
 Let’s make a few updates to `App.js` to let React decide which screen to display based on Auth status:
 
     class App extends Component {
@@ -169,7 +178,11 @@ Let’s make a few updates to `App.js` to let React decide which screen to displ
     export default App;
 
 
-You will notice that if the user is logged in, the app will show `<Home /`> otherwise the `<Login />` form will be displayed. This is an easy way to handle AuthChange but it's not suitable for production, we're using it for demonstration purpose and learn how to communicate with Firebase services.
+You will notice that if the user is logged in, the app will show `<Home /`> otherwise the `<Login />` form will be displayed.  Adding a loading text or spinner would also be great.
+
+> This is an easy way to handle AuthChange but it's not suitable for
+> production, we're using it for demonstration purpose and learn how to
+> communicate with Firebase services.
 
 In this example we'll create basic social cards with a title, description, an image and the author name. Open `Home.js` file and let's write some code:
 
@@ -188,7 +201,14 @@ Like our login page we need a form, some buttons and of course a function to han
 	    class="form-control mb-2" placeholder="Picture URL" required />
     <textarea row="9" value={this.state.description} onChange={this.handleChange} name="description" 
 	    class="form-control mb-2" placeholder="Description" required />
-The `handleChange` is similar to the last one so copy that in your file and initialize values in constructor:
+
+Fot the buttons we'll use this:
+
+    <Button color="dark" onClick={this.new} className="mb-5" block>    
+		SUBMIT    
+    </Button>
+
+The `handleChange` is similar to the last one so  just copy that in your `Home.js` file and initialize values in constructor:
 
      constructor(props) {
         super(props);
@@ -204,7 +224,6 @@ The `handleChange` is similar to the last one so copy that in your file and init
       }
       
 `list` is an empty array where we're going to store our social cards returned from the database, in this chapter we're not going to use `keys`, it's where the id keys are stored, we need it to identify an item so we can update it or delete it. We"ll cover that in the next chapter.
-
 
 Our form is ready but the application still don't know how to send data to firebase, the function below is where all the magic happens, I decided to call it `new` but you can choose whatever you want
 
@@ -244,11 +263,10 @@ Change the default values to `true` like so:
       }
     }
 
-Now if you click on create post button you should see the data submitted in your firebase console, remember that we're using **Realtime Database** and not Firestore.
+Now if you click on create post button you should see the data submitted in your firebase console, remember that we're using **Realtime Database** and not Firestore. You can eventually CRUD values right there but it's not our goal. 
 
 Awesome! Now that everything is working correctly let's create our social network, in order to to that we have to display data on page load and for that we use the famous`componentDidMount()`
-
-  
+ 
 
     componentDidMount = () => {
         this.setState({ loading: true });
@@ -273,6 +291,11 @@ Awesome! Now that everything is working correctly let's create our social networ
       };
 
   Pretty easy, right?  Notice that `snapshot.val()` is our actual values. 
+The logout function is very straightforward to implement, it's just one line of code:
+
+    logout = () => { 
+	    fire.auth().signOut();
+    };
 
 ### Social Cards UI
 ![main-app](https://i.imgur.com/HdeDn8l.jpg)
@@ -293,8 +316,35 @@ Now render that:
 
       {this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
       <CardColumns className="mb-5">{listItems}</CardColumns>
+      
+### Addtional Tweaks
 
-To make a fancy UI for our web app you can copy my `app.css` file or create your own
+I love to add some interactivity to my apps and that's why I hide the forms and display it when the user decide to, to make this works nothing complicated, just some changes to the state and we're good to go:
+
+    {!this.state.show ? (    
+    <Button color="dark" onClick={this.show} className="mb-5" block>
+        CREATE POST
+    </Button>
+    ) : null}
+    
+    {this.state.show ? (
+    <Button color="dark" onClick={this.new} className="mb-5" block>
+	    SUBMIT
+    </Button>    
+    ) : null}
+      
+    {this.state.show ? (
+    <SubmitForm />
+    ) : null}
+
+And then of course the `show()` function: 
+
+    show = () => {
+    this.setState({ show: !this.state.show });
+    };
+
+To give the web app a fancy UI you can copy my `app.css` file or create your own. The complete file can be found in the Github repository. 
+
 
     @import url(https://fonts.googleapis.com/css?family=Roboto:300);
     
@@ -320,12 +370,7 @@ To make a fancy UI for our web app you can copy my `app.css` file or create your
     	font-size: 14px;
     }
     body {
-    	background: #53d769; /* fallback for old browsers */
     	background: -webkit-linear-gradient(right, #53d769, #fecb2e);
-    	background: -moz-linear-gradient(right, #53d769, #fecb2e);
-    	background: -o-linear-gradient(right, #53d769, #fecb2e);
-    	background: linear-gradient(to left, #53d769, #fecb2e);
-    	font-family: 'Roboto', sans-serif;
     }
     
     #mainImage {
@@ -333,7 +378,6 @@ To make a fancy UI for our web app you can copy my `app.css` file or create your
     	height: 200px;
     	background-color: #fff;
     }
-The complete file can be found in the repository. 
 Congrats! You now have a full-stack realtime React app that can scale to millions of users. 
 
 
