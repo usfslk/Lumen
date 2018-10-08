@@ -1,5 +1,8 @@
 # Building a social network using React.js and Firebase
-We’re going to be creatinga basic list of items that you do CRUD to - create, read (update and delete in the next chapter). The feature itself is nothing special, it’s really just a skeleton that demonstrates how to do the most common operations with React and Firebase. 
+
+![hero](https://i.imgur.com/JISdJFy.png)
+
+We’re going to be creating a basic list of items that you do CRUD to - create, read (update and delete in the next chapter). The feature itself is nothing special, it’s really just a skeleton that demonstrates how to do the most common operations with React and Firebase. 
 
 *Here are a few important concepts for this lesson.*
 
@@ -265,6 +268,8 @@ Change the default values to `true` like so:
 
 Now if you click on create post button you should see the data submitted in your firebase console, remember that we're using **Realtime Database** and not Firestore. You can eventually CRUD values right there but it's not our goal. 
 
+![db](https://i.imgur.com/ltJ8EKk.jpg)
+
 Awesome! Now that everything is working correctly let's create our social network, in order to to that we have to display data on page load and for that we use the famous`componentDidMount()`
  
 
@@ -298,7 +303,7 @@ The logout function is very straightforward to implement, it's just one line of 
     };
 
 ### Social Cards UI
-![main-app](https://i.imgur.com/HdeDn8l.jpg)
+![main-app](https://i.imgur.com/MWtxkzh.png)
 Putting our `list` in a separate constant for best practices and good code readability, also `list` can be named whatever, I choose list for the sake of simplicity.
 
     const listItems = this.state.list.map((item, index) => (
