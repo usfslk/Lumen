@@ -1,6 +1,10 @@
 # Building a social network using React.js and Firebase
 
+![badge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)
+
 ![hero](https://i.imgur.com/JISdJFy.png)
+
+### What you’ll build in this tutorial
 
 We’re going to be creating a basic list of items that you do CRUD to - create, read (update and delete in the next chapter). The feature itself is nothing special, it’s really just a skeleton that demonstrates how to do the most common operations with React and Firebase. 
 
@@ -138,7 +142,7 @@ Now jump to your class and add our main auth functions:
 
 Boom! We got our first user. Let's move to the next step.
 
-### App structure
+### App Scaffold
 
 Now that everyone can create an account and login to our app, we need a better structure so let's create a folder called `routes` where we're going to put our two mains screens
 
@@ -194,7 +198,7 @@ Starting by importing firebase config file and a bunch of components from bootst
     import fire from '../Fire';
     import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, CardFooter, CardColumns, Button, Container, Row, Col } from 'reactstrap';
 
-### Adding data to firebase
+### Adding data to Firebase
 
 Like our login page we need a form, some buttons and of course a function to handle user input and send data to Google.  The code below is our ui elements: 
 
@@ -383,9 +387,12 @@ To give the web app a fancy UI you can copy my `app.css` file or create your own
     	height: 200px;
     	background-color: #fff;
     }
-Congrats! You now have a full-stack realtime React app that can scale to millions of users. 
+Congrats! You now have a full-stack realtime React app that can scale to millions of users. Thanks Google! 
 
+## Conclusion
 
+This article should have given you a good introduction to components, state, working with form data, pulling data from Firebase services, and deploying an app. There is much more to learn and do with React, but I hope you feel confident  playing around with React and Firebase yourself now.
 
+***If you enjoy my content, please consider supporting what I do***
 
-
+(c) [2018] MIT
