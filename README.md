@@ -11,6 +11,8 @@
  <img src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg" alt="badge">
 </p>
 
+### [Live Demo](https://csb-43mq0xw0ww-iqifbrwskl.now.sh/)
+
 ### Introduction
 
 We’re going to be creating a basic list of items that you do CRUD to - create, read (update and delete in the next chapter). The feature itself is nothing special, it’s really just a skeleton that demonstrates how to do the most common operations with React and Firebase. 
@@ -207,7 +209,10 @@ In this example we'll create basic social cards with a title, description, an im
 Starting by importing firebase config file and a bunch of components from bootstrap:
 
     import fire from '../Fire';
-    import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, CardFooter, CardColumns, Button, Container, Row, Col } from 'reactstrap';
+    import { Card, CardImg, CardText,
+	    CardBody, CardTitle, CardSubtitle, 
+	    CardFooter, CardColumns, Button,
+	    Container, Row, Col } from 'reactstrap';
 
 ### Adding data to Firebase
 
@@ -215,8 +220,10 @@ Like our login page we need a form, some buttons and of course a function to han
 
     <input value={this.state.title} onChange={this.handleChange} name="title"
 	     class="form-control mb-2" placeholder="Title" required />
+	     
     <input value={this.state.picture} onChange={this.handleChange} name="picture" 
 	    class="form-control mb-2" placeholder="Picture URL" required />
+	    
     <textarea row="9" value={this.state.description} onChange={this.handleChange} name="description" 
 	    class="form-control mb-2" placeholder="Description" required />
 
@@ -285,6 +292,8 @@ Now if you click on create post button you should see the data submitted in your
 
 ![db](https://i.imgur.com/ltJ8EKk.jpg)
 
+### Retrieving data from Firebase
+
 Awesome! Now that everything is working correctly let's create our social network, in order to to that we have to display data on page load and for that we use the famous`componentDidMount()`
  
 
@@ -317,7 +326,7 @@ The logout function is very straightforward to implement, it's just one line of 
 	    fire.auth().signOut();
     };
 
-### Social Cards UI
+### UI
 ![main-app](https://i.imgur.com/VFviw5j.png)
 
 
@@ -339,7 +348,7 @@ Now render that:
       {this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
       <CardColumns className="mb-5">{listItems}</CardColumns>
       
-### Addtional Tweaks
+#### Addtional Tweaks
 
 I love to add some interactivity to my apps and that's why I hide the forms and display it when the user decide to, to make this works nothing complicated, just some changes to the state and we're good to go:
 
