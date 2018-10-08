@@ -32,12 +32,11 @@ class App extends Component {
 						<div class="col-xs-2" />
 						<div class="col-xs-8">
 							<h1 className="text-light pt-5 pb-5">Lumen</h1>
-							{this.state.loggedIn ? <Home /> : null}
+							{this.state.loggedIn ? <Home /> : <Login />}
 						</div>
 						<div class="col-xs-2" />
 					</div>
 				</div>
-				{!this.state.loggedIn ? <Login /> : null}
 			</div>
 		);
 	}
