@@ -4,11 +4,11 @@
 </div>
 
 <p align="center">
- <img src="https://i.imgur.com/JISdJFy.png" alt="hero">
+ <img src="https://i.imgur.com/75r5Cbk.png" alt="hero">
 </p>
 
 <p align="center">
- <img src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg" alt="badge">
+ <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="badge">
 </p>
 
 ### [Live Demo](https://csb-zxq0yon9m4-amzzgprnss.now.sh/)
@@ -666,10 +666,6 @@ when it's enabled the form will appear below the post and then you click on the 
 You can see the full implementation [here](https://github.com/usfslk/Lumen)
 
 ***If you enjoy my content, please consider supporting what I do.***
-
-<p align="center">
- <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="badge">
-</p>
 
 
 Thanks for reading!
