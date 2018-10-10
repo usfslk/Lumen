@@ -416,6 +416,10 @@ This article should have given you a good introduction to components, state, wor
 <h2>Chapter 2 (Update and Delete)</h2>
 </div>
 
+                        <p align="center">
+                         <img src="https://i.imgur.com/75r5Cbkg.png" alt="badge">
+                        </p>
+
 This is the second chapter of "Building a social network with Reajct.js and Firebase", in **[Chapter One](https://usfslk.github.io/lumen.html)** we covered the following topics:
 
  - Enable Firebase Auth and Database 
