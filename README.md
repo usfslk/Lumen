@@ -413,7 +413,7 @@ This article should have given you a good introduction to components, state, wor
 
 
 <div align="center">
-<h2>Lumen : Social Network with React.js and Firebase - Chapter 2 (Update and Delete)</h2>
+<h2>Chapter 2 (Update and Delete)</h2>
 </div>
 
 This is the second chapter of "Building a social network with Reajct.js and Firebase", in **[Chapter One](https://usfslk.github.io/lumen.html)** we covered the following topics:
