@@ -416,10 +416,6 @@ This article should have given you a good introduction to components, state, wor
 <h2>Chapter 2 (Update and Delete)</h2>
 </div>
 
-                        <p align="center">
-                         <img src="https://i.imgur.com/75r5Cbkg.png" alt="badge">
-                        </p>
-
 This is the second chapter of "Building a social network with Reajct.js and Firebase", in **[Chapter One](https://usfslk.github.io/lumen.html)** we covered the following topics:
 
  - Enable Firebase Auth and Database 
@@ -489,13 +485,13 @@ This app is basically a social network so when users visit the website they expe
 The data is still coming form the same path but since each users have a separate feed we need to loop through a parent object that contains an object for each user which contains an array of posts, to render our view we have to write something similar to this:
 
 
-  const listItems = this.state.list.map((item, index) =>
-      Object.values(item).map(nestedItem => (
-        <p>
-          {nestedItem.title}
-        </p>
-      ))
-    );
+        const listItems = this.state.list.map((item, index) =>
+            Object.values(item).map(nestedItem => (
+              <p>
+                {nestedItem.title}
+              </p>
+            ))
+          );
 
 The social cards are very similar to the ones we created with bootstrap, the Semantic UI docs provide many great [examples](http://react.semantic-ui.com/views/card/) to quickstart your project, in this lesson we'll be using this:
 
