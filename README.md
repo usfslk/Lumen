@@ -416,10 +416,6 @@ This article should have given you a good introduction to components, state, wor
 <h2>Lumen : Social Network with React.js and Firebase - Chapter 2 (Update and Delete)</h2>
 </div>
 
-<p align="center">
- <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="badge">
-</p>
-
 This is the second chapter of "Building a social network with Reajct.js and Firebase", in **[Chapter One](https://usfslk.github.io/lumen.html)** we covered the following topics:
 
  - Enable Firebase Auth and Database 
@@ -670,6 +666,11 @@ when it's enabled the form will appear below the post and then you click on the 
 You can see the full implementation [here](https://github.com/usfslk/Lumen)
 
 ***If you enjoy my content, please consider supporting what I do.***
+
+<p align="center">
+ <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="badge">
+</p>
+
 
 Thanks for reading!
 
