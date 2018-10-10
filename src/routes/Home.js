@@ -1,20 +1,20 @@
+// Youssef Selkani
+// 2018
+
 import React, { Component } from 'react';
-import {
-	Card,
-	CardImg,
-	CardText,
-	CardBody,
-	CardTitle,
-	CardSubtitle,
-	CardFooter,
-	CardColumns,
-	Button,
-	Jumbotron,
-	Container,
-	Row,
-	Col
-} from 'reactstrap';
 import fire from '../Fire';
+import {
+	Button,
+	Container,
+	Header,
+	Card,
+	Icon,
+	Image,
+	Grid,
+	Segment,
+	Loader,
+} from 'semantic-ui-react';
+import '../App.css';
 
 class Home extends Component {
 	constructor(props) {
@@ -26,36 +26,9 @@ class Home extends Component {
 			picture: '',
 			list: [],
 			keys: [],
-			show: false
+			show: false,
 		};
 	}
-	handleChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
-	};
-
-	logout = () => {
-		fire.auth().signOut();
-	};
-
-	show = () => {
-		this.setState({ show: !this.state.show });
-	};
-
-	new = e => {
-		this.setState({ loading: true });
-		e.preventDefault();
-		let title = this.state.title;
-		let description = this.state.description;
-		let picture = this.state.picture;
-		const { currentUser } = fire.auth();
-		fire
-			.database()
-			.ref(`feed/`)
-			.push({ title, description, picture, user: currentUser.email })
-			.then(() => {
-				this.setState({ loading: false, show: false });
-			});
-	};
 
 	componentDidMount = () => {
 		this.setState({ loading: true });
@@ -74,86 +47,54 @@ class Home extends Component {
 				this.setState({
 					list: list,
 					keys: keys,
-					loading: false
+					loading: false,
 				});
 			});
 	};
 
 	render() {
-		const listItems = this.state.list.map((item, index) => (
-			<Card style={{ borderWidth: 0, borderRadius: 8, marginBottom: 25 }}>
-				<CardImg
-					top
-					width="100%"
-					id="mainImage"
-					src={item.picture}
-					style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
-				/>
-				<CardBody>
-					<CardTitle>{item.title}</CardTitle>
-					<CardText>{item.description}</CardText>
-				</CardBody>
-				<CardFooter>Posted by {item.user}</CardFooter>
-			</Card>
-		));
+		const listItems = this.state.list.map((item, index) =>
+			Object.values(item).map(nestedItem => (
+				<div>
+					<Grid.Column mobile={16} tablet={4} computer={4}>
+						<Card>
+							<Image
+								id="mainIMG"
+								src={nestedItem.picture}
+							/>
+							<Card.Content>
+								<Card.Header>
+									{nestedItem.title}
+								</Card.Header>
+								<Card.Description>
+									{nestedItem.description}
+								</Card.Description>
+							</Card.Content>
+							<Card.Content extra>
+								<a>
+									<Icon name="user" />
+									by {nestedItem.user}
+								</a>
+							</Card.Content>
+						</Card>
+						<br />
+					</Grid.Column>
+				</div>
+			))
+		);
 
 		return (
 			<div>
-				{this.state.show ? (
-					<div className="mb-3">
-						<input
-							value={this.state.title}
-							onChange={this.handleChange}
-							name="title"
-							class="form-control mb-2"
-							placeholder="Title"
-							required
-						/>
-						<input
-							value={this.state.picture}
-							onChange={this.handleChange}
-							name="picture"
-							class="form-control mb-2"
-							placeholder="Picture URL"
-							required
-						/>
-						<textarea
-							row="9"
-							value={this.state.description}
-							onChange={this.handleChange}
-							name="description"
-							class="form-control mb-2"
-							placeholder="Description"
-							required
-						/>
-					</div>
-				) : null}
-				<Row>
-					<Col xs="6" />
-					<Col xs="6" />
-				</Row>
-				<Row>
-					<Col xs="6">
-						{!this.state.show ? (
-							<Button color="dark" onClick={this.show} className="mb-5" block>
-								CREATE POST
-							</Button>
+				<Grid>
+					<Grid.Column id="headerContainer">
+						<br />
+						<br />
+						{this.state.loading ? (
+							<Loader active inline="centered" />
 						) : null}
-						{this.state.show ? (
-							<Button color="dark" onClick={this.new} className="mb-5" block>
-								SUBMIT
-							</Button>
-						) : null}
-					</Col>
-					<Col xs="6">
-						<Button color="light" onClick={this.logout} className="mb-5" block>
-							LOGOUT
-						</Button>
-					</Col>
-				</Row>
-
-				{this.state.loading ? <h6 class="mb-5">Loading ...</h6> : null}
-				<CardColumns className="mb-5">{listItems}</CardColumns>
+						<Grid textAlign="center">{listItems}</Grid>
+					</Grid.Column>
+				</Grid>
 			</div>
 		);
 	}

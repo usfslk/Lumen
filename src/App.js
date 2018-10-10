@@ -1,18 +1,29 @@
+// Youssef Selkani
+// 2018
+
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
-import Login from './routes/Login';
-import Home from './routes/Home';
-import fire from './Fire';
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+} from 'react-router-dom';
+import { Button, Container, Icon } from 'semantic-ui-react';
 import './App.css';
+
+import Home from './routes/Home';
+import Account from './routes/Account';
+import fire from './Fire.js';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			error: null,
-			loggedIn: null
+			loggedIn: null,
 		};
 	}
+	logout = () => {
+		fire.auth().signOut();
+	};
 	componentDidMount = () => {
 		this.setState({ loading: true });
 		fire.auth().onAuthStateChanged(user => {
@@ -26,18 +37,65 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-2" />
-						<div class="col-xs-8">
-							<h1 className="text-light pt-5 pb-5">Lumen</h1>
-							{this.state.loggedIn ? <Home /> : <Login />}
+			<Router>
+				<div>
+					<div id="mainHeader">
+						<div id="headerContainer">
+							<Button
+								id="headerBTN"
+								compact
+								color="black"
+								href="/"
+							>
+								Home
+							</Button>
+							<Button
+								compact
+								id="headerBTN"
+								color="black"
+								href="https://github.com/usfslk/Lumen"
+								target="blank"
+							>
+								Tutorial
+							</Button>
+							<Button
+								id="headerBTN"
+								compact
+								color="green"
+								href="/account"
+							>
+								{this.state.loggedIn ? 'Account' : 'Log in'}
+							</Button>
+
+							{!this.state.loggedIn ? (
+								<Button
+									icon
+									id="headerBTN"
+									href="/account"
+									compact
+									color="green"
+								>
+									Sign up
+								</Button>
+							) : null}
+
+							{this.state.loggedIn ? (
+								<Button
+									icon
+									id="headerBTN"
+									onClick={this.logout}
+									compact
+									color="red"
+								>
+									<Icon name="logout" />
+								</Button>
+							) : null}
 						</div>
-						<div class="col-xs-2" />
 					</div>
+					<Route exact path="/" component={Home} />
+					<Route path="/Account" component={Account} />
 				</div>
-			</div>
+			</Router>
 		);
 	}
 }

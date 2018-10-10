@@ -1,71 +1,45 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/* 
+// Youssef Selkani
+// 2018 
+*/
 
-.form {
-	background: #ffffff;
-	max-width: 350px;
-	margin: 0 auto;
-	padding: 45px;
-	text-align: center;
-}
-.form input {
-	font-family: 'Roboto', sans-serif;
-	outline: 0;
-	background: #eee;
+#mainHeader {
+	background: -webkit-linear-gradient(
+		right,
+		#ffffff,
+		#ededed
+	);
+
 	width: 100%;
-	border: 0;
-	margin: 0 0 15px;
-	padding: 15px;
-	box-sizing: border-box;
-	font-size: 14px;
-}
-.form button {
-	font-family: 'Roboto', sans-serif;
-	text-transform: uppercase;
-	outline: 0;
-	background: #222;
-	width: 100%;
-	border: 0;
-	padding: 15px;
-	color: #eee;
-	font-size: 14px;
-	-webkit-transition: all 0.3 ease;
-	transition: all 0.3 ease;
-	cursor: pointer;
-}
-.form button:hover,
-.form button:active,
-.form button:focus {
-	background: #53d769;
-}
-.form .message {
-	margin: 15px 0 0;
-	color: #b3b3b3;
-	font-size: 12px;
-}
-.form .message a {
-	color: #4caf50;
-	text-decoration: none;
-}
-.form .register-form {
-	display: none;
-}
-.container {
-	position: relative;
-	z-index: 1;
-	max-width: 300px;
-	margin: 0 auto;
-}
-body {
-	background: #53d769; /* fallback for old browsers */
-	background: -webkit-linear-gradient(right, #53d769, #fecb2e);
-	background: -moz-linear-gradient(right, #53d769, #fecb2e);
-	background: -o-linear-gradient(right, #53d769, #fecb2e);
-	background: linear-gradient(to left, #53d769, #fecb2e);
-	font-family: 'Roboto', sans-serif;
 }
 
-#mainImage {
+#headerContainer {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+#mainIMG {
 	object-fit: cover;
-	height: 200px;
-	background-color: #fff;
+	height: 320px;
+}
+#smallIMG {
+	object-fit: cover;
+	height: 100px;
+}
+
+#headerBTN {
+	margin-left: 1%;
+	padding-left: 3%;
+	padding-right: 3%;
+	margin-bottom: 2%;
+	margin-top: 2%;
+}
+#formBTN {
+	margin-left: 1%;
+}
+
+#loginForm {
+	margin: 0 auto;
 }
