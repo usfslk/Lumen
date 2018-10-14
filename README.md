@@ -11,7 +11,7 @@
  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="badge">
 </p>
 
-### [Live Demo](https://csb-zxq0yon9m4-amzzgprnss.now.sh/)
+### [Live Demo](https://lumen.protobulb.io/)
 
 ### Introduction
 
