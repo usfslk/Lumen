@@ -664,7 +664,7 @@ when it's enabled the form will appear below the post and then you click on the 
     };
 
 <div align="center">
-<h2>Chapter 3 (Live Voting System )</h2>
+<h2>Chapter 3 (Live Voting System)</h2>
 </div>
 
 Welcome to the third and last chapter of 'Building a social network with React.js and Firebase'. In Chapter Two we covered the following topics:
